@@ -2,6 +2,8 @@ package com.couplespace.app.repository;
 
 import com.couplespace.app.entity.Photo;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 import java.time.LocalDateTime;
 import java.util.List;
@@ -27,8 +29,9 @@ public interface PhotoRepository extends JpaRepository<Photo, Long> {
     // 统计用户照片数量
     long countByUserId(Long userId);
 
-    // 统计用户照片总大小
-    Long sumFileSizeByUserId(Long userId);
+    // 统计用户照片总大小 - 使用自定义查询
+    @Query("SELECT COALESCE(SUM(p.fileSize), 0) FROM Photo p WHERE p.userId = :userId")
+    Long getTotalFileSizeByUserId(@Param("userId") Long userId);
 
     // 根据文件名查找照片
     Photo findByFileName(String fileName);
