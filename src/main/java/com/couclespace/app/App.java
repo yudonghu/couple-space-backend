@@ -1,13 +1,12 @@
-package com.couclespace.app;
+package com.couplespace.app;
 
-/**
- * Hello world!
- *
- */
-public class App 
-{
-    public static void main( String[] args )
-    {
-        System.out.println( "Hello World!" );
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+
+@SpringBootApplication
+public class CoupleSpaceApplication {
+
+    public static void main(String[] args) {
+        SpringApplication.run(CoupleSpaceApplication.class, args);
     }
 }
